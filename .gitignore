@@ -8,6 +8,3 @@ wheels/
 
 # Virtual environments
 .venv
-
-# Do not ignore dirs itself wich contains .gitingore
-!.gitignore
