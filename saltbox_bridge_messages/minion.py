@@ -6,7 +6,7 @@ from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
 from saltbox_bridge_messages.utils import SaltTgtType
 
 
-class MinionPresenceMessage(CoreMessageBase):
+class BridgeMinionPresenceMessage(BridgeMessageBase):
     minions: list[str]
     stamp: float
 
