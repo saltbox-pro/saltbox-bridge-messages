@@ -4,8 +4,11 @@ __pycache__/
 build/*
 dist/
 wheels/
-*.egg-info
+*.egg-info/*
 /uv.lock
 
 # Virtual environments
 .venv
+
+# Do not ignore dirs itself wich contains .gitingore
+!.gitignore
