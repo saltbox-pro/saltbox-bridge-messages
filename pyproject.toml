@@ -1,6 +1,6 @@
 [project]
 name = 'saltbox-bridge-messages'
-version = '0.0.0'
+version = '0.0.1'
 description = 'Models of messages to communicate between Salt.Box Core and Bridge components'
 readme = 'README.md'
 requires-python = '>=3.10'

@@ -1,0 +1,24 @@
+---
+
+variables:
+  CHECK_IMAGE: 'python:3.10-alpine'
+
+
+.check:
+  variables:
+    PIP_CACHE_DIR: '$CI_PROJECT_DIR/.cache/pip'
+  image: '$CHECK_IMAGE'
+  before_script: 'pip3 install -e .[dev]'
+  cache:
+    paths:
+      - '.cache/pip/'
+
+
+ruff:
+  extends: .check
+  script: 'ruff check .'
+
+
+mypy:
+  extends: .check
+  script: 'mypy .'
