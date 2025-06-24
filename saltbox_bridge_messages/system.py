@@ -55,8 +55,7 @@ class MasterStatus(str, Enum):
 class AuthRequestMessage(BridgeMessageBase):
     master: str
     crypt_pubkey: str = Field(description='Public key for message encryption and verification')
-    # TODO (a.karmanov) US317: Rename due to GitFS deprecation
-    gitfs_pubkey: SshPubKeyModel = Field(description='OpenSSH formatted public key to authorize GitFS')
+    salt_conf_pubkey: SshPubKeyModel = Field(description='OpenSSH formatted public key to authorize GitFS')
     sshfs_pubkey: SshPubKeyModel = Field(description='OpenSSH formatted public key to authorize SSHFS')
 
 
