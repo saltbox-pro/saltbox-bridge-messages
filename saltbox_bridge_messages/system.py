@@ -76,7 +76,7 @@ class CoreTestBurstRequest(CoreMessageBase):
     size: int = 0
 
 class BridgeTestBurstLoadMessage(BridgeMessageBase):
-    load: bytes | None = None
+    load: str | None = None
 
 class BridgeTestBurstResponse(BridgeMessageBase):
     time: timedelta
