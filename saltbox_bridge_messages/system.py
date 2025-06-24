@@ -1,4 +1,5 @@
 from enum import Enum
+from datetime import timedelta
 from typing import Annotated
 from pydantic import AfterValidator, BaseModel, Field
 from typing_extensions import Self  # typing.Self starting from Python 3.11
@@ -68,3 +69,14 @@ class MasterStatusMessage(BaseModel):
     master: str
     status: MasterStatus
     is_pubkey_set: bool
+
+
+class CoreTestBurstRequest(CoreMessageBase):
+    count: int
+    size: int = 0
+
+class BridgeTestBurstLoadMessage(BridgeMessageBase):
+    load: bytes | None = None
+
+class BridgeTestBurstResponse(BridgeMessageBase):
+    time: timedelta
