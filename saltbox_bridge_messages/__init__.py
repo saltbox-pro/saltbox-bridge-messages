@@ -20,13 +20,12 @@ from saltbox_bridge_messages.minion import (
     GatheredMinionSchema,
 )
 from saltbox_bridge_messages.system import (
-    AuthRequestMessage,
-    AuthResponseMessage,
+    BridgeAuthRequest,
     BridgeTestBurstLoadMessage,
     BridgeTestBurstResponse,
+    CoreAuthResponse,
     CoreTestBurstRequest,
     MasterStatus,
-    MasterStatusMessage,
     SshPubKeyModel,
 )
 from saltbox_bridge_messages.utils import (
@@ -34,26 +33,25 @@ from saltbox_bridge_messages.utils import (
 )
 
 __all__ = [
-    'AuthRequestMessage',
-    'AuthResponseMessage',
+    'BridgeAuthRequest',
     'BridgeGatherMinionsResponse',
     'BridgeMessageBase',
     'BridgeMinionGrainsMessage',
+    'BridgeMinionPresenceMessage',
     'BridgeNewJobResponce',
     'BridgeTestBurstLoadMessage',
     'BridgeTestBurstResponse',
+    'CoreAuthResponse',
     'CoreEmptyMessage',
     'CoreGatherMinionsRequest',
-    'CoreTestBurstRequest',
     'CoreMessageBase',
     'CoreNewJobAsyncRequest',
     'CoreNewJobRequest',
+    'CoreTestBurstRequest',
+    'CoreUpdatePillarCacheRequest',
     'GatheredMinionSchema',
     'JobReturnSchema',
     'MasterStatus',
-    'MasterStatusMessage',
-    'BridgeMinionPresenceMessage',
-    'CoreUpdatePillarCacheRequest',
     'SaltTgtType',
     'SshPubKeyModel',
 ]
