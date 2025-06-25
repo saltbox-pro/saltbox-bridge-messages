@@ -1,10 +1,12 @@
-from enum import Enum
 from datetime import timedelta
+from enum import Enum
 from typing import Annotated
+
 from pydantic import AfterValidator, BaseModel, Field
 from typing_extensions import Self  # typing.Self starting from Python 3.11
 
 from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
+
 
 def validate_ssh_pubkey_token(value: str) -> str:
     if not value.isascii() or ' ' in value:
@@ -19,8 +21,10 @@ def validate_is_ascii(value: str) -> str:
         raise ValueError(msg)
     return value
 
+
 SshPubKeyToken = Annotated[str, AfterValidator(validate_ssh_pubkey_token)]
 AsciiStr = Annotated[str, AfterValidator(validate_is_ascii)]
+
 
 class SshPubKeyModel(BaseModel):
     type_name: SshPubKeyToken
@@ -45,6 +49,7 @@ class SshPubKeyModel(BaseModel):
             comment = ''
         return cls(type_name=tokens[0], public_key=tokens[1], comment=comment)
 
+
 # FIXME (a.karmanov): Normalize enum
 class MasterStatus(str, Enum):
     new = 'new'
@@ -52,30 +57,25 @@ class MasterStatus(str, Enum):
     rejected = 'rejected'
 
 
-class AuthRequestMessage(BridgeMessageBase):
-    master: str
+class BridgeAuthRequest(BridgeMessageBase):
     crypt_pubkey: str = Field(description='Public key for message encryption and verification')
     salt_conf_pubkey: SshPubKeyModel = Field(description='OpenSSH formatted public key to authorize GitFS')
     sshfs_pubkey: SshPubKeyModel = Field(description='OpenSSH formatted public key to authorize SSHFS')
 
 
-class AuthResponseMessage(CoreMessageBase):
+class CoreAuthResponse(CoreMessageBase):
     crypt_pubkey: str = Field(description='Salt.Box Core public key for message encryption and verification')
-
-
-# FIXME (a.karmanov) US317: Req + resp or delete
-class MasterStatusMessage(BaseModel):
-    master: str
     status: MasterStatus
-    is_pubkey_set: bool
 
 
 class CoreTestBurstRequest(CoreMessageBase):
     count: int
     size: int = 0
 
+
 class BridgeTestBurstLoadMessage(BridgeMessageBase):
     load: str | None = None
+
 
 class BridgeTestBurstResponse(BridgeMessageBase):
     time: timedelta
