@@ -52,10 +52,10 @@ class SshPubKeyModel(BaseModel):
 
 # FIXME (a.karmanov): Normalize enum
 class MasterStatus(str, Enum):
-    new = 'new'
-    accepted = 'accepted'
-    rejected = 'rejected'
-    keys_stale = 'keys_stale'  # Master needs keys rotation
+    NEW = 'new'
+    ACCEPTED = 'accepted'
+    REJECTED = 'rejected'
+    KEYS_STALE = 'keys_stale'  # Master needs keys rotation
 
 
 class BridgeAuthRequest(BridgeMessageBase):
