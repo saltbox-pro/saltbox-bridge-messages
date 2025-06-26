@@ -55,6 +55,7 @@ class MasterStatus(str, Enum):
     new = 'new'
     accepted = 'accepted'
     rejected = 'rejected'
+    keys_stale = 'keys_stale'  # Master needs keys rotation
 
 
 class BridgeAuthRequest(BridgeMessageBase):
