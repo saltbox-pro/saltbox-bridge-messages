@@ -6,6 +6,7 @@ from pydantic import AfterValidator, BaseModel, Field
 from typing_extensions import Self  # typing.Self starting from Python 3.11
 
 from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
+from saltbox_bridge_messages.utils import Iso8601ZDatetime
 
 
 def validate_ssh_pubkey_token(value: str) -> str:
@@ -50,7 +51,6 @@ class SshPubKeyModel(BaseModel):
         return cls(type_name=tokens[0], public_key=tokens[1], comment=comment)
 
 
-# FIXME (a.karmanov): Normalize enum
 class MasterStatus(str, Enum):
     NEW = 'new'
     ACCEPTED = 'accepted'
@@ -80,3 +80,14 @@ class BridgeTestBurstLoadMessage(BridgeMessageBase):
 
 class BridgeTestBurstResponse(BridgeMessageBase):
     time: timedelta
+
+
+class MasterSyncStatus(str, Enum):
+    NEVER = 'never'
+    SUCCEED = 'succeed'
+    ERROR = 'error'
+
+
+class BridgeSyncDoneMessage(BridgeMessageBase):
+    status: MasterSyncStatus
+    time: Iso8601ZDatetime
