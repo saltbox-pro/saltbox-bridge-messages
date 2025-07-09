@@ -8,6 +8,10 @@ SaltTgtType = Literal[
 ]
 
 
+def utc_now() -> datetime:
+    return datetime.now(tz=timezone.utc)
+
+
 def format_iso8601_z(dt: datetime) -> str:
     """
     Format datetime to ISO 8601 with Z-suffix (UTC).

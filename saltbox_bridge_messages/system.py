@@ -6,7 +6,7 @@ from pydantic import AfterValidator, BaseModel, Field
 from typing_extensions import Self  # typing.Self starting from Python 3.11
 
 from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
-from saltbox_bridge_messages.utils import Iso8601ZDatetime
+from saltbox_bridge_messages.utils import Iso8601ZDatetime, utc_now
 
 
 def validate_ssh_pubkey_token(value: str) -> str:
@@ -21,6 +21,24 @@ def validate_is_ascii(value: str) -> str:
         msg = 'Expected ASCII string'
         raise ValueError(msg)
     return value
+
+
+class TimedeltaRangeValidator:
+    def __init__(self, min: timedelta | None = None, max: timedelta | None = None) -> None:
+        if min is not None and max is not None and min > max:
+            msg = 'Minimal period constraint is longer than maximal'
+            raise ValueError(msg)
+        self.min = min
+        self.max = max
+
+    def __call__(self, value: timedelta) -> timedelta:
+        if self.min is not None and value < self.min:
+            msg = 'Period is less than expected'
+            raise ValueError(msg)
+        if self.max is not None and value > self.max:
+            msg = 'Period is longer than expected'
+            raise ValueError(msg)
+        return value
 
 
 SshPubKeyToken = Annotated[str, AfterValidator(validate_ssh_pubkey_token)]
@@ -80,6 +98,27 @@ class BridgeTestBurstLoadMessage(BridgeMessageBase):
 
 class BridgeTestBurstResponse(BridgeMessageBase):
     time: timedelta
+
+
+BurstJobsDuration = Annotated[
+    timedelta,
+    AfterValidator(TimedeltaRangeValidator(min=timedelta(0), max=timedelta(minutes=10))),
+]
+
+
+class CoreTestBurstJobsRequest(CoreMessageBase):
+    id: str = Field(
+        default_factory=lambda: utc_now().isoformat(),
+        description='Arbitrary unique identifier to mark fake messages with'
+    )
+    duration: BurstJobsDuration = Field(description='Duration of bursting with `job/{jid}/new` events')
+    rate: int = Field(description='Target `job/{jid}/new` events per second')
+
+
+class BurstJobsTestReportSchema(BaseModel):
+    count: int = Field(description='Amount of mesages sent by Bridge')
+    start: Iso8601ZDatetime
+    end: Iso8601ZDatetime
 
 
 class MasterSyncStatus(str, Enum):
