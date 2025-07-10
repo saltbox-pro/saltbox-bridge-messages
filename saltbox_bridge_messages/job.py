@@ -32,7 +32,7 @@ class CoreNewJobRequest(CoreMessageBase):
 
 
 #class JobSyncOutMessage(BridgeMessageBase):
-class BridgeNewJobResponce(BridgeMessageBase):
+class BridgeNewJobResponse(BridgeMessageBase):
     jid: str
     tgt: str
     tgt_type: SaltTgtType
