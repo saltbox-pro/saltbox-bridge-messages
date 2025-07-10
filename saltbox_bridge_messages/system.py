@@ -8,6 +8,8 @@ from typing_extensions import Self  # typing.Self starting from Python 3.11
 from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
 from saltbox_bridge_messages.utils import Iso8601ZDatetime, utc_now
 
+MAX_JOB_BURST_RATE = 10_000
+
 
 def validate_ssh_pubkey_token(value: str) -> str:
     if not value.isascii() or ' ' in value:
@@ -112,11 +114,16 @@ class CoreTestBurstJobsRequest(CoreMessageBase):
         description='Arbitrary unique identifier to mark fake messages with'
     )
     duration: BurstJobsDuration = Field(description='Duration of bursting with `job/{jid}/new` events')
-    rate: int = Field(description='Target `job/{jid}/new` events per second')
+    rate: int = Field(gt=0, le=MAX_JOB_BURST_RATE, description='Target `job/{jid}/new` events per second')
+    strict: bool = Field(
+        default=True,
+        description='Interrupt bursting on time over or send all rate * duration messages'
+    )
 
 
 class BurstJobsTestReportSchema(BaseModel):
     count: int = Field(description='Amount of mesages sent by Bridge')
+    overdue: int = Field(description='Amount of messages sent later than expected')
     start: Iso8601ZDatetime
     end: Iso8601ZDatetime
 
