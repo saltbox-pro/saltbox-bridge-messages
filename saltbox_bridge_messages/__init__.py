@@ -4,6 +4,7 @@ from saltbox_bridge_messages.base import (
     CoreMessageBase,
 )
 from saltbox_bridge_messages.job import (
+    BridgeInventoryDataSavedMessage,
     BridgeNewJobResponse,
     CoreNewJobAsyncRequest,
     CoreNewJobRequest,
@@ -35,6 +36,7 @@ from saltbox_bridge_messages.utils import Iso8601ZDatetime, SaltTgtType
 __all__ = [
     'BridgeAuthRequest',
     'BridgeGatherMinionsResponse',
+    'BridgeInventoryDataSavedMessage',
     'BridgeMessageBase',
     'BridgeMinionGrainsMessage',
     'BridgeMinionPresenceMessage',
