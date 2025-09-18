@@ -10,5 +10,9 @@ wheels/
 # Virtual environments
 .venv
 
+# Editors
+/.vscode
+/.idea
+
 # Do not ignore dirs itself wich contains .gitingore
 !.gitignore

@@ -7,7 +7,6 @@ from saltbox_bridge_messages.job import (
     BridgeInventoryDataSavedMessage,
     BridgeNewJobResponse,
     CoreNewJobAsyncRequest,
-    CoreNewJobRequest,
     JobReturnSchema,
 )
 from saltbox_bridge_messages.master import CoreUpdatePillarCacheRequest
@@ -50,7 +49,6 @@ __all__ = [
     'CoreGatherMinionsRequest',
     'CoreMessageBase',
     'CoreNewJobAsyncRequest',
-    'CoreNewJobRequest',
     'CoreTestBurstJobsRequest',
     'CoreTestBurstRequest',
     'CoreUpdatePillarCacheRequest',

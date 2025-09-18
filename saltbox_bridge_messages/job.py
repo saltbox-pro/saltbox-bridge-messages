@@ -20,15 +20,6 @@ class CoreNewJobAsyncRequest(CoreMessageBase):
     hash_name: str
 
 
-class CoreNewJobRequest(CoreMessageBase):
-    tgt: str
-    tgt_type: SaltTgtType
-    fun: str
-    arg: list
-    kwarg: dict
-    jid: str | None = None
-
-
 class BridgeNewJobResponse(BridgeMessageBase):
     jid: str
     tgt: str
