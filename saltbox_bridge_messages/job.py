@@ -5,7 +5,6 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
 
 from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
-from saltbox_bridge_messages.utils import SaltTgtType
 
 
 class JobReturnSchema(BaseModel):
@@ -18,16 +17,6 @@ class JobReturnSchema(BaseModel):
 
 class CoreNewJobAsyncRequest(CoreMessageBase):
     hash_name: str
-
-
-class BridgeNewJobResponse(BridgeMessageBase):
-    jid: str
-    tgt: str
-    tgt_type: SaltTgtType
-    fun: str
-    arg: list
-    kwarg: dict
-    returns: dict[str, JobReturnSchema]
 
 
 class BridgeInventoryDataSavedMessage(BridgeMessageBase):

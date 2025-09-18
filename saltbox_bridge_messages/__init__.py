@@ -5,7 +5,6 @@ from saltbox_bridge_messages.base import (
 )
 from saltbox_bridge_messages.job import (
     BridgeInventoryDataSavedMessage,
-    BridgeNewJobResponse,
     CoreNewJobAsyncRequest,
     JobReturnSchema,
 )
@@ -39,7 +38,6 @@ __all__ = [
     'BridgeMessageBase',
     'BridgeMinionGrainsMessage',
     'BridgeMinionPresenceMessage',
-    'BridgeNewJobResponse',
     'BridgeSyncDoneMessage',
     'BridgeTestBurstLoadMessage',
     'BridgeTestBurstResponse',
