@@ -79,13 +79,11 @@ class MasterStatus(str, Enum):
 
 
 class BridgeAuthRequest(BridgeMessageBase):
-    crypt_pubkey: str = Field(description='Public key for message encryption and verification')
     salt_conf_pubkey: SshPubKeyModel = Field(description='OpenSSH formatted public key to authorize GitFS')
     sshfs_pubkey: SshPubKeyModel = Field(description='OpenSSH formatted public key to authorize SSHFS')
 
 
 class CoreAuthResponse(CoreMessageBase):
-    crypt_pubkey: str = Field(description='Salt.Box Core public key for message encryption and verification')
     status: MasterStatus
 
 
