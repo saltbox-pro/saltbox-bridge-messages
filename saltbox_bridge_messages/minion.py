@@ -1,18 +1,11 @@
-from typing import Annotated, Any
+from __future__ import annotations
+
+from typing import Annotated
 
 from pydantic import BaseModel, Field, PositiveInt
 
 from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
 from saltbox_bridge_messages.utils import SaltTgtType
-
-
-class BridgeMinionPresenceMessage(BridgeMessageBase):
-    minions: list[str]
-    stamp: float
-
-
-class BridgeMinionGrainsMessage(BridgeMessageBase):
-    grains: dict[str, Any]
 
 
 class GatheredMinionSchema(BaseModel):
