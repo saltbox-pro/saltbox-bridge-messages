@@ -3,7 +3,11 @@ from saltbox_bridge_messages.base import (
     CoreEmptyMessage,
     CoreMessageBase,
 )
-from saltbox_bridge_messages.master import CoreUpdatePillarCacheRequest
+from saltbox_bridge_messages.master import (
+    CoreEncryptPillarRequest,
+    CoreEncryptPillarResponse,
+    CoreUpdatePillarCacheRequest,
+)
 from saltbox_bridge_messages.minion import (
     BridgeGatherMinionsResponse,
     CoreGatherMinionsRequest,
@@ -34,6 +38,8 @@ __all__ = [
     'BurstJobsTestReportSchema',
     'CoreAuthResponse',
     'CoreEmptyMessage',
+    'CoreEncryptPillarRequest',
+    'CoreEncryptPillarResponse',
     'CoreGatherMinionsRequest',
     'CoreMessageBase',
     'CoreTestBurstJobsRequest',
