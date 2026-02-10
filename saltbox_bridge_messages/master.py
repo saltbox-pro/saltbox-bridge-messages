@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from saltbox_bridge_messages.base import CoreMessageBase
+from saltbox_bridge_messages.base import BridgeMessageBase, CoreMessageBase
 from saltbox_bridge_messages.utils import SaltTgtType
 
 
@@ -15,3 +15,12 @@ class CoreEncryptPillarRequest(CoreMessageBase):
 
 class CoreEncryptPillarResponse(CoreMessageBase):
     encrypted_text: str
+
+
+class BridgePillarDataRequest(BridgeMessageBase):
+    minion_id: str
+    pillarenv: str
+
+
+class CorePillarDataResponse(CoreMessageBase):
+    data: dict
