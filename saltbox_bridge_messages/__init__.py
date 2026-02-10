@@ -4,8 +4,10 @@ from saltbox_bridge_messages.base import (
     CoreMessageBase,
 )
 from saltbox_bridge_messages.master import (
+    BridgePillarDataRequest,
     CoreEncryptPillarRequest,
     CoreEncryptPillarResponse,
+    CorePillarDataResponse,
     CoreUpdatePillarCacheRequest,
 )
 from saltbox_bridge_messages.minion import (
@@ -32,6 +34,7 @@ __all__ = [
     'BridgeAuthRequest',
     'BridgeGatherMinionsResponse',
     'BridgeMessageBase',
+    'BridgePillarDataRequest',
     'BridgeSyncDoneMessage',
     'BridgeTestBurstLoadMessage',
     'BridgeTestBurstResponse',
@@ -42,6 +45,7 @@ __all__ = [
     'CoreEncryptPillarResponse',
     'CoreGatherMinionsRequest',
     'CoreMessageBase',
+    'CorePillarDataResponse',
     'CoreTestBurstJobsRequest',
     'CoreTestBurstRequest',
     'CoreUpdatePillarCacheRequest',
