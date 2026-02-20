@@ -23,4 +23,5 @@ class BridgePillarDataRequest(BridgeMessageBase):
 
 
 class CorePillarDataResponse(CoreMessageBase):
-    data: dict
+    pillars: dict
+    error: str | None = None
