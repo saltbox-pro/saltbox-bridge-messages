@@ -4,6 +4,11 @@ variables:
   CHECK_IMAGE: 'python:3.10-alpine'
 
 
+include:
+  - project: 'saltbox/ci-lib'
+    file: 'def-branch-merge-guard.yml'
+
+
 .check:
   variables:
     PIP_CACHE_DIR: '$CI_PROJECT_DIR/.cache/pip'
