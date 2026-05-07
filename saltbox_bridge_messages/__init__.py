@@ -5,8 +5,6 @@ from saltbox_bridge_messages.base import (
 )
 from saltbox_bridge_messages.master import (
     BridgePillarDataRequest,
-    CoreEncryptPillarRequest,
-    CoreEncryptPillarResponse,
     CorePillarDataResponse,
     CoreUpdatePillarCacheRequest,
 )
@@ -14,6 +12,10 @@ from saltbox_bridge_messages.minion import (
     BridgeGatherMinionsResponse,
     CoreGatherMinionsRequest,
     GatheredMinionSchema,
+)
+from saltbox_bridge_messages.salt_keys import (
+    SaltKeysRequest,
+    SaltKeysResponse,
 )
 from saltbox_bridge_messages.system import (
     BridgeAuthRequest,
@@ -41,8 +43,6 @@ __all__ = [
     'BurstJobsTestReportSchema',
     'CoreAuthResponse',
     'CoreEmptyMessage',
-    'CoreEncryptPillarRequest',
-    'CoreEncryptPillarResponse',
     'CoreGatherMinionsRequest',
     'CoreMessageBase',
     'CorePillarDataResponse',
@@ -53,6 +53,8 @@ __all__ = [
     'Iso8601ZDatetime',
     'MasterStatus',
     'MasterSyncStatus',
+    'SaltKeysRequest',
+    'SaltKeysResponse',
     'SaltTgtType',
     'SshPubKeyModel',
 ]

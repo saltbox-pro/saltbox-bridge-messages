@@ -9,14 +9,6 @@ class CoreUpdatePillarCacheRequest(CoreMessageBase):
     tgt_type: SaltTgtType
 
 
-class CoreEncryptPillarRequest(CoreMessageBase):
-    text: str
-
-
-class CoreEncryptPillarResponse(CoreMessageBase):
-    encrypted_text: str
-
-
 class BridgePillarDataRequest(BridgeMessageBase):
     minion_id: str
     pillarenv: str
