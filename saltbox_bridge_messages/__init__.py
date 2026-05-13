@@ -16,6 +16,9 @@ from saltbox_bridge_messages.minion import (
 from saltbox_bridge_messages.salt_keys import (
     SaltKeysRequest,
     SaltKeysResponse,
+    SaltKeyStatusType,
+    SaltListKeysRequest,
+    SaltListKeysResponse,
 )
 from saltbox_bridge_messages.system import (
     BridgeAuthRequest,
@@ -53,8 +56,11 @@ __all__ = [
     'Iso8601ZDatetime',
     'MasterStatus',
     'MasterSyncStatus',
+    'SaltKeyStatusType',
     'SaltKeysRequest',
     'SaltKeysResponse',
+    'SaltListKeysRequest',
+    'SaltListKeysResponse',
     'SaltTgtType',
     'SshPubKeyModel',
 ]
