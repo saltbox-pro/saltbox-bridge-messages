@@ -16,3 +16,6 @@ wheels/
 
 # Do not ignore dirs itself wich contains .gitingore
 !.gitignore
+
+# Other
+.DS_Store

@@ -8,8 +8,18 @@ include:
   - project: 'saltbox/ci-lib'
     file: 'def-branch-merge-guard.yml'
 
+  - project: 'saltbox/ci-lib'
+    file: 'mirror-repo.yml'
+
+
+stages:
+  - lint
+  - test
+  - build
+
 
 .check:
+  stage: lint
   variables:
     PIP_CACHE_DIR: '$CI_PROJECT_DIR/.cache/pip'
   image: '$CHECK_IMAGE'
@@ -19,11 +29,16 @@ include:
       - '.cache/pip/'
 
 
-ruff:
+Ruff:
   extends: .check
   script: 'ruff check .'
 
 
-mypy:
+MyPy:
   extends: .check
   script: 'mypy .'
+
+
+Mirror Repository:
+  extends: .mirror-repo
+  stage: build
